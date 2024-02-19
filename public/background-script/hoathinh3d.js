@@ -54,13 +54,24 @@ export const HoatHinh3D = async () => {
     });
   }
 
+  const removeAllTab = async() => {
+    for (const tab of await getAllTabs()) {
+      if (!tab.url.startsWith('chrome://')) {
+        await chrome.tabs.remove(tab.id);
+      }
+    }
+  }
+
   const main = async () => {
     let retryTime = 0, logined = false;
 
+    await createTab('chrome://newtab');
+    await removeAllTab();
     await createTab(domainLogin);
 
     while (true) {
-      if (retryTime > 10) break;
+      if (retryTime >= 30) return;
+
       retryTime++;
       logined = false;
 
@@ -73,26 +84,15 @@ export const HoatHinh3D = async () => {
 
       if (logined) break;
 
-      await sleep(500);
+      await sleep(1000);
     }
 
-    await createTab('https://www.google.com');
-
-    for (const tab of await getAllTabs()) {
-      if (
-        tab.url.includes('google.com')
-        || tab.url.startsWith('chrome://')
-      ) {
-        continue;
-      }
-      await chrome.tabs.remove(tab.id);
-    }
-
+    await removeAllTab();
     await createTab(domainPhucLoi, 0);
     await createTab(domainTruyenThua, 1);
     await createTab(domainThiLuyen, 2);
   }
 
   main();
-  setInterval(main, 9 * 60 * 1000);
+  setInterval(main, 60 * 60 * 1000);
 }
