@@ -10,6 +10,7 @@ import { Checkbox } from "../../components/input/checkbox";
 
 export const HoatHinh3D = () => {
   const [instanceId, setInstanceId] = useState('');
+  const [domain, setDomain] = useState('');
   const [isActive, setActive] = useState(false);
   const storage = useStorage();
   const toast = useToast();
@@ -19,8 +20,10 @@ export const HoatHinh3D = () => {
     const init = async () => {
       const id = await storage.get(Keys.hh3d.instanceId) ?? '';
       const isActive = await storage.get(Keys.hh3d.isActive) ?? false;
+      const domain = await storage.get(Keys.hh3d.domain) ?? '';
 
       setInstanceId(id);
+      setDomain(domain);
       setActive([true, 'true'].includes(isActive));
     }
     init();
@@ -41,6 +44,7 @@ export const HoatHinh3D = () => {
   const saveSetting = async () => {
     await storage.set(Keys.hh3d.instanceId, instanceId);
     await storage.set(Keys.hh3d.isActive, isActive);
+    await storage.set(Keys.hh3d.domain, domain);
     toast.success('Save success!');
   }
 
@@ -81,6 +85,14 @@ export const HoatHinh3D = () => {
             </Button>
           </div>
         </div>
+        <Input
+            id="domain"
+            placeholder="HH3D Domain"
+            label="HH3D Domain"
+            rootClass="w-[calc(100%-100px)]"
+            value={domain}
+            onChange={(e) => setDomain(e.target.value)}
+          />
         <Button color="primary" size="sm" onClick={saveSetting}>
           Save
         </Button>

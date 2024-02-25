@@ -34,12 +34,14 @@ export const HoatHinh3D = async () => {
   if (!isActiveAuto) return;
 
   const workerId = await getStorage('hh3d-instance-id');
-  const domain = 'https://hoathinh3d.cc/';
+  const domain = await getStorage('hh3d-domain');
   const instanceID = await chrome.instanceID.getID();
 
   if (instanceID !== workerId) {
     return;
   }
+
+  if (!domain || domain === '') return;
 
   const domainLogin = domain + 'login?t=' + makeId();
   const domainPhucLoi = domain + 'phuc-loi?t=' + makeId();
