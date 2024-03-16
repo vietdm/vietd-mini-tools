@@ -48,6 +48,12 @@ export const HoatHinh3D = () => {
     toast.success('Save success!');
   }
 
+  const reRunAuto = async () => {
+    const counter = parseInt(await storage.get(Keys.hh3d.reRun) ?? '0');
+    await storage.set(Keys.hh3d.reRun, counter + 1);
+    toast.success('Re-Run success!');
+  }
+
   return (
     <div className="rounded-lg py-[1rem] px-[1.5rem] bg-[rgba(255,255,255,0.7)] flex flex-wrap justify-between">
       <h2 className="font-bold text-[24px] border-b-2 border-[#a9a9a9] w-full py-1 mb-5">
@@ -86,16 +92,21 @@ export const HoatHinh3D = () => {
           </div>
         </div>
         <Input
-            id="domain"
-            placeholder="HH3D Domain"
-            label="HH3D Domain"
-            rootClass="w-[calc(100%-100px)]"
-            value={domain}
-            onChange={(e) => setDomain(e.target.value)}
-          />
-        <Button color="primary" size="sm" onClick={saveSetting}>
+          id="domain"
+          placeholder="HH3D Domain"
+          label="HH3D Domain"
+          rootClass="w-[calc(100%-100px)]"
+          value={domain}
+          onChange={(e) => setDomain(e.target.value)}
+        />
+        <div className="flex gap-3">
+        <Button color="primary" onClick={saveSetting}>
           Save
         </Button>
+        <Button color="purple" onClick={reRunAuto} className="w-[100px]">
+          Re-Run
+        </Button>
+        </div>
       </div>
     </div>
   );

@@ -23,6 +23,7 @@ export const Keys = {
     domain: 'hh3d-domain',
     instanceId: 'hh3d-instance-id',
     isActive: 'hh3d-is-active',
+    reRun: 'hh3d-rerun-counter',
   }
 }
 
