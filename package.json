@@ -1,6 +1,7 @@
 {
-  "name": "mono-tools",
-  "version": "0.1.0",
+  "name": "vietd-mini-tools",
+  "version": "1.0.0",
+  "author": "Minh Viet (VietD)",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
