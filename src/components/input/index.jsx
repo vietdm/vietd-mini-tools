@@ -20,6 +20,7 @@ export const Input = ({
   name = null,
   rootClass = '',
   inputClass = '',
+  labelClass = '',
   label = 'Label',
   type = 'text',
   ...props
@@ -28,7 +29,7 @@ export const Input = ({
     <div className={twMerge("mb-3", rootClass)}>
       <label
         htmlFor={id}
-        className="block mb-1 font-medium text-gray-900 dark:text-white">
+        className={twMerge("block mb-1 font-medium text-gray-900 dark:text-white", labelClass)}>
         {label}
       </label>
       <input

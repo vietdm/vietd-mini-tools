@@ -6,7 +6,7 @@ import { Button } from "./components/button";
 import { Keys, useStorage } from "./hooks/storage";
 import { Loading } from "./components/loading";
 import { InstanceId } from "./modules/instance-id";
-import { HoatHinh3D } from "./modules/hoathinh3d";
+import { RandomBcrypt } from "./modules/random-bcrypt";
 
 function App() {
   const [isReady, setReady] = useState(false);
@@ -24,10 +24,10 @@ function App() {
       color: 'green',
       el: <RandomUuidV4 />
     },
-    hoatHinh3D: {
-      text: 'HoatHinh3D',
+    RandomBcrypt: {
+      text: 'Random Bcrypt',
       color: 'purple',
-      el: <HoatHinh3D />
+      el: <RandomBcrypt />
     }
   }
 
@@ -54,7 +54,7 @@ function App() {
         <>
           <div className={tabActive ? "mb-3" : "mb-4"}>
             <div className="text-white bg-teal-600 font-bold rounded-lg text-lg px-5 py-2.5 text-center select-none">
-              Mono Tools By VietDM {tabActive ? ` | ${Tabs[tabActive].text}` : ''}
+              VietD Mini Tools By VietDM {tabActive ? ` | ${Tabs[tabActive].text}` : ''}
             </div>
           </div>
           {!tabActive ? (

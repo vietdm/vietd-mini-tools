@@ -19,6 +19,10 @@ export const Keys = {
   uuidConfig: {
     lastUuid: 'last-uuid'
   },
+  bcryptConfig: {
+    lastPassword: 'last-bcrypt-password',
+    lastHash: 'last-bcrypt-hash',
+  },
   hh3d: {
     domain: 'hh3d-domain',
     instanceId: 'hh3d-instance-id',
